@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dart counter with announcer</title>
+</head>
+<body>
+    <script type="module" src="/src/main.ts"></script>
+    <div id="setupContainer">
+        <form id="GameSettings">
+            <div id="PlayerList">
+                <h4>Players:</h4>
+            </div><br />
+            <input type="text" id="PlayerNameText" /><button type="button" id="AddPlayerButton">Add Player</button><br />
+            <label for="LCount">Number of legs</label><input type="number" id="LCount" name="LCount" min="1" max="10"
+                value="3" /><br />
+            <div id="AudioList">
+                <h4>Audios:</h4>
+            </div><br />
+            <button type="button" id="AddAudioButton">Add audio</button><br />
+            <button type="button" disabled="true" id="StartGameButton">Start Game</button>
+        </form>
+    </div>
+    <div id="gameContainer">
+        <div id="scoreboard"></div>
+        <input type="number" id="ScoreInput" name="ScoreInput" min="0" max="180" value="0" />
+        <button type="button" id="SubmitScoreButton">Submit Score</button><br />
+        <button type="button" id="ResetGameButton">Reset Game</button><br />
+    </div>
+</body>
+</html>
