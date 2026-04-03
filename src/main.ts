@@ -10,6 +10,12 @@ const game = new Game();
     loadGame();
     document.getElementById("StartGameButton")?.addEventListener("click",  startGame);
     document.getElementById("AddPlayerButton")?.addEventListener("click", addPlayer);
+    document.getElementById("PlayerNameText")?.addEventListener("keypress", (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        addPlayer();
+      }
+    });
     document.getElementById("AddAudioButton")?.addEventListener("click", startRecording);
     document.getElementById("ResetGameButton")?.addEventListener("click", () => {
       if (confirm("Are you sure you want to reset the game?")) {
