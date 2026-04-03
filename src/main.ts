@@ -95,7 +95,7 @@ function drawScoreboard() {
   game.players.forEach(player => {
     const playerScore = document.createElement("p");
     playerScore.setAttribute("id", "player-score-" + player.id);
-    playerScore.textContent = (player.id === game.currentPlayer ? "->": "") +  `${player.name}: ${player.score} points, ${player.legsWon} legs won`;
+    playerScore.textContent = (player.id === game.currentPlayer ? "🟥": "⬜") +  `${player.name}: ${player.score} points, ${player.legsWon} legs won`;
     scoreboard.appendChild(playerScore);
   });
 }
@@ -120,7 +120,7 @@ function addPlayerToDom(player: Player) {
   const playerList = document.getElementById("PlayerList");
   const listItem = document.createElement("p");
   const removeButton = document.createElement("button");
-  removeButton.textContent = "Remove";
+  removeButton.textContent = "❌";
   removeButton.type = "button";
   listItem.textContent = `${player.name}`;
   listItem.appendChild(removeButton);
@@ -205,6 +205,7 @@ function startRecording() {
         mediaRecorder = new MediaRecorder(stream);
         mediaRecorder.start();
         startRecordingButton.style.backgroundColor = "red";
+        startRecordingButton.textContent = "Stop Recording";
         mediaRecorder.ondataavailable = (e) => {
           chunks.push(e.data);
         };
@@ -227,6 +228,7 @@ function stopRecording() {
   const startRecordingButton = document.getElementById("AddAudioButton") as HTMLButtonElement;
   mediaRecorder.onstop = () => {
     startRecordingButton.style.backgroundColor = "";
+        startRecordingButton.textContent = "Add audio";
     const blob = new Blob(chunks, { type: "audio/ogg; codecs=opus" });
     var scoreForAudio = NaN;
     do {
@@ -258,7 +260,7 @@ function addAudioToDom(audio: DartAudio) {
   const listItem = document.createElement("p");
   const audioElement = document.createElement("audio");
   const removeButton = document.createElement("button");
-  removeButton.textContent = "Remove";
+  removeButton.textContent = "❌";
   removeButton.type = "button";
   removeButton.addEventListener("click", () => removeAudio(audio.score));
   audioElement.controls = true;
