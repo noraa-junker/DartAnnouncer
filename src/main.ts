@@ -94,8 +94,17 @@ function drawScoreboard() {
   scoreboard.innerHTML = "";
   game.players.forEach(player => {
     const playerScore = document.createElement("p");
+    const indicator = document.createElement("span");
+    const info = document.createElement("span");
+    indicator.textContent = player.id === game.currentPlayer ? "🟥" : "⬜";
     playerScore.setAttribute("id", "player-score-" + player.id);
-    playerScore.textContent = (player.id === game.currentPlayer ? "🟥": "⬜") +  `${player.name}: ${player.score} points, ${player.legsWon} legs won`;
+    info.textContent =  `${player.name}: ${player.score} points, ${player.legsWon} legs won`;
+    playerScore.appendChild(indicator);
+    playerScore.appendChild(info);
+    if (player.id === game.currentPlayer) {
+      playerScore.style.fontWeight = "bold";
+      indicator.classList.add("fade-in");
+    }
     scoreboard.appendChild(playerScore);
   });
 }
@@ -125,7 +134,9 @@ function addPlayerToDom(player: Player) {
   listItem.textContent = `${player.name}`;
   listItem.appendChild(removeButton);
   listItem.setAttribute("name", "playeritem-" + player.id);
+  listItem.classList.add("fade-in");
   removeButton.addEventListener("click", () => removePlayer(player.id));
+  removeButton.style.marginLeft = "10px";
   playerList?.appendChild(listItem);
   console.log(`Added player: ${player.name} with ID: ${player.id}`);
 }
@@ -258,16 +269,23 @@ function stopRecording() {
 function addAudioToDom(audio: DartAudio) {
   const audioList = document.getElementById("AudioList");
   const listItem = document.createElement("p");
-  const audioElement = document.createElement("audio");
+  const playButton = document.createElement("button");
   const removeButton = document.createElement("button");
+  playButton.textContent = "▶️";
+  playButton.type = "button";
   removeButton.textContent = "❌";
   removeButton.type = "button";
+  playButton.addEventListener("click", () => {
+    const audioToPlay = new Audio(audio.audioURL);
+    audioToPlay.play();
+  });
+  playButton.style.marginRight = "10px";
+  playButton.style.marginLeft = "10px";
   removeButton.addEventListener("click", () => removeAudio(audio.score));
-  audioElement.controls = true;
-  audioElement.src = audio.audioURL;
   listItem.textContent = `Score: ${audio.score}`;
   listItem.setAttribute("name", "audioitem-" + audio.score);
-  listItem.appendChild(audioElement);
+  listItem.classList.add("fade-in");
+  listItem.appendChild(playButton);
   listItem.appendChild(removeButton);
   audioList?.appendChild(listItem);
 }

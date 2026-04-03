@@ -1,0 +1,70 @@
+* {
+  box-sizing: border-box;
+}
+
+p, label, button, input {
+  font-size: large;
+}
+
+h4 {
+    font-size: x-large;
+}
+h2 {
+    font-size: xx-large;
+}
+ 
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex-grow: 1;
+}
+
+#ResetGameButton {
+  margin-top: 20px;
+}
+
+#PlayerAddContainer {
+    display: flex;
+    align-items: center;
+}
+
+#PlayerNameText {
+    flex: 1;
+    min-width: 0;
+}
+#AddPlayerButton {
+    flex-shrink: 0;
+}
+
+body, input {
+    background-color: aliceblue;
+}
+
+input:focus {
+    background-color: white;
+}
+
+button, input {
+    border-radius: 5px;
+}
+
+button {
+    padding: 1%;
+    cursor: pointer;
+}
+
+input{
+    padding: 1%;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+
+.fade-in { animation: fadeIn 2s; }
