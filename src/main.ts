@@ -117,7 +117,9 @@ function drawScoreboard() {
 
 function addPlayer() {
   const startGameButton = document.getElementById("StartGameButton") as HTMLButtonElement;
-  var playerName = (document.getElementById("PlayerNameText") as HTMLInputElement).value;
+  const playerNameInput = document.getElementById("PlayerNameText") as HTMLInputElement;
+  var playerName = playerNameInput.value;
+  playerNameInput.value = "";
   var playerId = game.players.length > 0 ? game.players[game.players.length - 1].id + 1 : 1;
   if (playerName.trim() === "") {
     alert("Player name cannot be empty.");
